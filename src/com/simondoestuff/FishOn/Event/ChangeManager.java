@@ -42,20 +42,18 @@ public class ChangeManager implements Listener {
 
     public static boolean forceChange(UUID player, State state) {
         boolean ret = false;
+        State pState = getState(player);
 
         switch (state) {
             case SWIMMING: {
-                State pState = getState(player);
                 if (pState == State.WALKING || pState == State.SUFFOCATING) ret = true;
                 break;
             }
             case WALKING: {
-                State pState = getState(player);
                 if (pState == State.SWIMMING) ret = true;
                 break;
             }
             case SUFFOCATING: {
-                State pState = getState(player);
                 if (pState == State.WALKING) ret = true;
                 break;
             }
