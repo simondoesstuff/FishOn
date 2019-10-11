@@ -135,22 +135,21 @@ public class PrimaryBreathingOperations implements Listener {           // I DID
             for (PotionEffect effect : effects) if (player != null) player.removePotionEffect(effect.getType());
         }
 
-        public void setState(UUID player, ChangeManager.State state) {
-            Player playerObj = Bukkit.getPlayer(player);
+        public void setState(Player player, ChangeManager.State state) {
 
-            if (playerObj != null) {
+            if (player != null) {
                 for (ChangeManager.State s : ChangeManager.State.values()) {
-                    if (s != state) takeEffects(playerObj, s);
+                    if (s != state) takeEffects(player, s);
                 }
 
-                grantEffects(playerObj, state);
+                grantEffects(player, state);
             }
 
-            ChangeManager.forceChange(player, state);
+            ChangeManager.forceChange(player.getUniqueId(), state);
         }
 
-        public void setState(Player player, ChangeManager.State state) {
-            setState(player.getUniqueId(), state);
+        public void setState(UUID player, ChangeManager.State state) {
+            setState(Bukkit.getPlayer(player)), state);
         }
 
     }
