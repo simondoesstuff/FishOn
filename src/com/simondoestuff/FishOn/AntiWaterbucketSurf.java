@@ -31,18 +31,17 @@ public class AntiWaterbucketSurf implements Listener {
         for (BlockFace face : faces) {
             Location nearby = loc.clone().add(face.getDirection());
             BlockData data = nearby.getBlock().getBlockData();
-            Levelled level = null;
 
-            if (nearby.getBlock().getType() == Material.WATER && data instanceof Levelled) level = (Levelled) data;
+            if (nearby.getBlock().getType() == Material.WATER && data instanceof Levelled) {
+                Levelled level = (Levelled) data;
+                if (level.getLevel() == 0) found++;
+            }
+        } else if (data instanceof Waterlogged && ((Waterlogged) data).isWaterlogged()) found++;
 
-            if (nearby.getBlock().getType() == Material.WATER) {
-                if (level != null && level.getLevel() == 0) found++;
-            } else if (data instanceof Waterlogged && ((Waterlogged) data).isWaterlogged()) found++;
-
-            if (found > 1) return;
-        }
+        if (found > 1) return;
+    }
 
         e.getItemStack().setType(Material.BUCKET);
-        e.getPlayer().sendMessage(Main.prefix + " Your bucket can't be filled by that lonely water source.");
-    }
+        e.getPlayer().sendMessage(Main.prefix +" Your bucket can't be filled by that lonely water source.");
+}
 }
