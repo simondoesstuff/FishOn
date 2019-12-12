@@ -1,0 +1,11 @@
+name: FishOn
+version: 1.0-SNAPSHOT
+main: com.simondoestuff.fishon.Plugin
+api-version: 1.14
+prefix: §f§l[§2Fish§a§lOn!§f§l]§e
+authors: [simondoestuff]
+commands:
+  checknow:
+    description: Manually run a SwimCheck on a player.
+    permission: fishon.checknow
+    usage: /checknow §7[§eTargetPlayer §7or §e*§7]
