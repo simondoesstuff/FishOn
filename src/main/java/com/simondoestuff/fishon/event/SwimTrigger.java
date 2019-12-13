@@ -23,7 +23,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Objects;
 
 public class SwimTrigger implements Listener {
-    Plugin plugin = Plugin.instance;
+    Plugin plugin;
+
+    public SwimTrigger() {
+        plugin = Plugin.getInstance();
+    }
 
     public static boolean isSafeBlock(Block block) {
         Material material = block.getType();

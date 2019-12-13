@@ -2,7 +2,6 @@ name: FishOn
 version: 1.0-SNAPSHOT
 main: com.simondoestuff.fishon.Plugin
 api-version: 1.14
-prefix: §f§l[§2Fish§a§lOn!§f§l]§e
 authors: [simondoestuff]
 commands:
   checknow:

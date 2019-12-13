@@ -1,4 +1,4 @@
-package com.simondoestuff.fishon.Commands;
+package com.simondoestuff.fishon.commands;
 
 import com.simondoestuff.fishon.Plugin;
 import com.simondoestuff.fishon.event.ChangeManager;
@@ -11,6 +11,23 @@ import org.bukkit.entity.Player;
 
 public class CommandCheckNow implements CommandExecutor {
 
+    public static int checkAll() {
+        int caught = 0;
+
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            ChangeManager.State before = ChangeManager.getState(player.getUniqueId());
+
+            ChangeManager.CheckState current = (SwimTrigger.isSafeBlock(player.getLocation().getBlock())) ? ChangeManager.CheckState.WATER : ChangeManager.CheckState.LAND;
+            ChangeManager.inform(player.getUniqueId(), current);
+
+            ChangeManager.State after = ChangeManager.getState(player.getUniqueId());
+
+            if (before != after) caught++;
+        }
+
+        return caught;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (args.length != 1) {
@@ -19,18 +36,7 @@ public class CommandCheckNow implements CommandExecutor {
         }
 
         if (args[0].equals("*")) {
-            int caught = 0;
-
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                ChangeManager.State before = ChangeManager.getState(player.getUniqueId());
-
-                ChangeManager.CheckState current = (SwimTrigger.isSafeBlock(player.getLocation().getBlock())) ? ChangeManager.CheckState.WATER : ChangeManager.CheckState.LAND;
-                ChangeManager.inform(player.getUniqueId(), current);
-
-                ChangeManager.State after = ChangeManager.getState(player.getUniqueId());
-
-                if (before != after) caught++;
-            }
+            int caught = checkAll();
 
             if (caught == 0) sender.sendMessage(Plugin.prefix + " All players are as expected.");
             else

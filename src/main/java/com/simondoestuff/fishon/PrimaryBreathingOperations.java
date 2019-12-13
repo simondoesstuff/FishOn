@@ -20,10 +20,14 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class PrimaryBreathingOperations implements Listener {           // I DID IT!!! completely instantiable!
-    private final Plugin plugin = Plugin.instance;
+    private final Plugin plugin;
     private final int airtime = 10;
 
-    private class BreathTimer extends BukkitRunnable {      // this is the breath system --- creates a separate thread which means when running this method again it wouldnt have access anymore
+    public PrimaryBreathingOperations() {
+        plugin = Plugin.getInstance();
+    }
+
+    public class BreathTimer extends BukkitRunnable {      // this is the breath system --- creates a separate thread which means when running this method again it wouldnt have access anymore
         private long endTime;
         private UUID initialPlayer;
 
@@ -40,7 +44,7 @@ public class PrimaryBreathingOperations implements Listener {           // I DID
             this.runTaskTimer(plugin, 20, 20);   // the delay in here is timed to be totally flush
         }   // I think this automatically requires a non null player
 
-        private void close() {
+        public void close() {
             sendActionBar(initialPlayer, "");
             this.cancel();
             bars.remove(this);
@@ -65,6 +69,7 @@ public class PrimaryBreathingOperations implements Listener {           // I DID
             }
         }
     }
+
 
     public class StateManager {
         private final PotionEffect[] waterEffects = {

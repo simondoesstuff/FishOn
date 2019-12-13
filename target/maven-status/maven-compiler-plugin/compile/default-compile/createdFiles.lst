@@ -1,11 +1,12 @@
 com\simondoestuff\fishon\event\ChangeManager$1.class
-com\simondoestuff\fishon\Commands\CommandCheckNow.class
 com\simondoestuff\fishon\Plugin.class
 com\simondoestuff\fishon\event\SwimChangeEvent.class
 com\simondoestuff\fishon\PrimaryBreathingOperations$StateManager.class
+com\simondoestuff\fishon\commands\CommandCheckNow.class
 com\simondoestuff\fishon\event\ChangeManager$CheckState.class
 com\simondoestuff\fishon\PrimaryBreathingOperations$BreathTimer.class
 com\simondoestuff\fishon\PrimaryBreathingOperations$1.class
+com\simondoestuff\fishon\customitems\Waterbottle.class
 com\simondoestuff\fishon\PrimaryBreathingOperations.class
 com\simondoestuff\fishon\event\SwimTrigger.class
 com\simondoestuff\fishon\PrimaryBreathingOperations$2.class
